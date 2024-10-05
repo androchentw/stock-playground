@@ -20,8 +20,8 @@ pip3 install -r requirements.txt
 uvicorn main:app --reload
 
 # Run way 2: docker compose way
-docker compose -f docker-compose.yml --env-file=.env up -d
-docker compose -f docker-compose.yml --env-file=.env down # -v
+docker compose -f docker-compose.yml --env-file=example.env up -d
+docker compose -f docker-compose.yml --env-file=example.env down # -v
 # docker-compose down --remove-orphans
 
 # tag
@@ -34,26 +34,6 @@ docker rmi $(docker images -f "dangling=true" -q)
 ```
 
 ```text
-
-├───app
-│   ├───api
-│   │   ├───dependencies        # FastAPI dependency injection 
-│   │   └───routes              # endpoint definintions
-│   ├───core                    # settings
-│   ├───db
-│   │   ├───models              # SQLAlchemy models
-│   │   └───repositories        # CRUD related stuff
-│   ├───models                  
-│   │   ├───domain              # schemas related to domain entities
-│   │   └───utility_schemas     # schemas for other validation
-│   └───services                # not just CRUD related stuff
-├───migrations
-│   └───versions
-└───tests
-    ├───fixtures                # where test specific fixtures live
-    └───unit_tests                
-        └───test_api            # testing endpoints
-
 stockdemo/
 │
 ├── app/
@@ -74,7 +54,7 @@ stockdemo/
 └── pytest.ini
 ```
 
-## Access
+## Try it out
 
 * API Docs
   * Swagger: [http://localhost:8000/docs]
@@ -88,18 +68,22 @@ stockdemo/
     * Password: `changeme`
 
 ```sh
-curl http://localhost:8000/stocks \
-  -X POST -H 'Content-Type: application/json' \
-  -d '{ "name": "NVDA", "price": 100.5 }'
+curl -X POST http://localhost:8000/stocks \
+  -H 'accept: application/json' -H 'Content-Type: application/json' \
+  -d '{ "name": "NVDA", "price": 111.5 }'
+curl -X POST http://localhost:8000/stocks \
+  -H 'accept: application/json' -H 'Content-Type: application/json' \
+  -d '{ "name": "AAPL", "price": 222.8 }'
 
-curl http://localhost:8000/stocks/1
+curl -X GET http://localhost:8000/stocks/1
+curl -X GET http://localhost:8000/stocks/2
 ```
 
 or add in pgadmin:
 
 ```sql
-INSERT INTO stocks VALUES (1, 'NVDA', 100.5););
-INSERT INTO stocks VALUES (2, 'AAPL', 102.5);
+INSERT INTO stocks VALUES (1, 'NVDA', 111.5);
+INSERT INTO stocks VALUES (2, 'AAPL', 222.8);
 
 SELECT * FROM stocks;
 ```
@@ -129,6 +113,19 @@ SELECT * FROM public."MyData";
 
 ### Advanced
 
+* [minimal-fastapi-postgres-template](https://github.com/androchentw/minimal-fastapi-postgres-template)
 * [DevOps with Fast API & PostgreSQL: How to containerize Fast API Application with Docker](https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb)
 * [Async Web REST API with FastAPI + SQLAlchemy 2.0 Postgres ORM + Docker + Pytest + Alembic](https://github.com/reinhud/async-fastapi-postgres-template)
 * [Pytest API Testing Masterclass with FastAPI, Postgres and SQLAlchemy - 2 Part Series](https://github.com/Pytest-with-Eric/api-testing-masterclass)
+
+### GCP
+
+* [Connect to Cloud SQL for PostgreSQL from Cloud Run](https://cloud.google.com/sql/docs/postgres/connect-instance-cloud-run)
+* [cloud-sql-python-connector](https://github.com/GoogleCloudPlatform/cloud-sql-python-connector)
+  * FastAPI + SQLAlchemy ORM
+  * Async Driver Usage: asyncpg (Postgres)
+  * pg8000
+  * [cloud-sql-fastapi](https://github.com/jackwotherspoon/cloud-sql-fastapi/tree/main)
+* [Cloud Run, Cloud SQL, Terraform Pgvector (FastAPI Your Data — Episode 6)](https://medium.com/@saverio3107/connecting-cloud-run-with-cloud-sql-using-terraform-fastapi-your-data-episode-6-8673812e3941)
+  * [fastapi-your-data](https://github.com/androchentw/fastapi-your-data)
+* [How to Connect a FastAPI Server to PostgreSQL and Deploy on GCP Cloud Run](https://glenn-viroux.medium.com/how-to-connect-a-fastapi-server-to-postgresql-and-deploy-on-gcp-cloud-run-4950af0e2e44)

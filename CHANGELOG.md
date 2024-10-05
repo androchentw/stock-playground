@@ -1,21 +1,10 @@
 # Changelog
 
-## [Unreleased]
-
-
-## [v1.1.0] - 2023-11-29
-
-- feat: update github issue template
-- feat: add SECURITY.md
-
-## [v1.0.0] - 2023-04-14
+## [0.1.0] - 2024-10-05
 
 ### Added
 
-- feat: init
-
-<!-- Links -->
+- feat: add a basic example of docker compose integrating fastapi + postgresql + sqlalchemy + pgadmin
 
 <!-- Versions -->
-[v1.1.0]: https://github.com/androchentw/template-playground/releases/tag/v1.1.0
-[v1.0.0]: https://github.com/androchentw/template-playground/releases/tag/v1.0.0
+[0.1.0]: https://github.com/androchentw/stock-playground/releases/tag/v0.1.0

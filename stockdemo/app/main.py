@@ -45,7 +45,7 @@ async def test_logger():
     return {"message": "Check log types produced by app"}
 
 
-@app.post("/stocks/", response_model=schemas.Stock)
+@app.post("/stocks", response_model=schemas.Stock)
 def create_stock(stock: schemas.StockCreate, db: Session = Depends(get_db)):
     return crud.create_stock(db=db, stock=stock)
 
