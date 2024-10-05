@@ -20,8 +20,8 @@ pip3 install -r requirements.txt
 uvicorn main:app --reload
 
 # Run way 2: docker compose way
-docker compose -f docker-compose.yml --env-file=example.env up -d
-docker compose -f docker-compose.yml --env-file=example.env down # -v
+docker compose -f docker-compose.yml --env-file=.env up -d
+docker compose -f docker-compose.yml --env-file=.env down # -v
 # docker-compose down --remove-orphans
 
 # tag
@@ -105,6 +105,8 @@ SELECT * FROM public."MyData";
 
 ### Basic
 
+* [FastAPI - SQL (Relational) Databases](https://fastapi.tiangolo.com/id/tutorial/sql-databases/?h=postgres)
+  * [full-stack-fastapi-template](https://github.com/fastapi/full-stack-fastapi-template)
 * [Postgresql & PgAdmin powered by compose](https://github.com/khezen/compose-postgres)
 * [Docker-compose創建PostgreSQL](https://cde566.medium.com/docker-compose%E5%89%B5%E5%BB%BApostgresql-7f3f9519fa20)
 * [FastAPI + SQLAlchemy+PostgreSQL — FastAPI的ORM](https://medium.com/@King610160/fastapi-sqlalchemy-postgresql-fastapi%E7%9A%84orm-00818bc63106)
@@ -114,6 +116,7 @@ SELECT * FROM public."MyData";
 ### Advanced
 
 * [minimal-fastapi-postgres-template](https://github.com/androchentw/minimal-fastapi-postgres-template)
+* [fastapi-beyond-CRUD](https://github.com/jod35/fastapi-beyond-CRUD)
 * [DevOps with Fast API & PostgreSQL: How to containerize Fast API Application with Docker](https://dev.to/mbuthi/devops-with-fast-api-postgresql-how-to-containerize-fast-api-application-with-docker-1jdb)
 * [Async Web REST API with FastAPI + SQLAlchemy 2.0 Postgres ORM + Docker + Pytest + Alembic](https://github.com/reinhud/async-fastapi-postgres-template)
 * [Pytest API Testing Masterclass with FastAPI, Postgres and SQLAlchemy - 2 Part Series](https://github.com/Pytest-with-Eric/api-testing-masterclass)
