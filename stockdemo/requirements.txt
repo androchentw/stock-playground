@@ -1,0 +1,18 @@
+# app
+fastapi==0.115.0
+uvicorn==0.31.0
+pydantic==2.9.2
+loguru==0.7.2
+
+# db
+SQLAlchemy==2.0.35
+psycopg2-binary==2.9.9
+alembic==1.13.3
+
+# testing
+pytest==8.3.3
+pytest-asyncio==0.24.0
+httpx==0.27.2
+
+# settings
+python-dotenv==1.0.1

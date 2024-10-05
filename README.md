@@ -1,4 +1,4 @@
-# Template Playground
+# Stock Playground
 
 <p align="center">
   <img style="width:60%;" src="https://i.imgur.com/ZYG59DH.png">
