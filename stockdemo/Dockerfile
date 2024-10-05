@@ -2,7 +2,6 @@ FROM python:3.12-slim
 
 # prevents pyc files from being copied to the container
 ENV PYTHONDONTWRITEBYTECODE 1
-
 # Ensures that python output is logged in the container's terminal
 ENV PYTHONUNBUFFERED 1
 
