@@ -1,11 +1,48 @@
 from fastapi import FastAPI, Depends, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
+from loguru import logger
+from .database import engine, get_db
 from . import crud, models, schemas
-from .database import SessionLocal, engine, get_db
 
+
+def get_app() -> FastAPI:
+    """Instanciating and setting up FastAPI application."""
+    api_app = FastAPI()
+
+    origins = [
+        "http://localhost:5050",
+    ]
+    api_app.add_middleware(
+        CORSMiddleware,
+        allow_origins=origins,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+    # api_app.include_router(api_router, prefix=settings.api_prefix)
+
+    return api_app
+
+
+app = get_app()
 models.Base.metadata.create_all(bind=engine)
 
-app = FastAPI()
+
+# ===== App Info Endpoints ===== #
+@app.get("/")
+async def root():
+    return {"message": "OK"}
+
+
+@app.get("/logger_test")
+async def test_logger():
+    logger.info("info")
+    logger.warning("warning")
+    logger.error("error")
+    logger.critical("critical")
+    return {"message": "Check log types produced by app"}
 
 
 @app.post("/stocks/", response_model=schemas.Stock)

@@ -14,4 +14,5 @@ class Stock(StockBase):
     id: int
 
     class Config:
+        # allow database schemas mapping to ORM objects
         orm_mode = True
